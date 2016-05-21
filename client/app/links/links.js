@@ -1,12 +1,11 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, $location, Links, Auth, LinkPrepService) {
+.controller('LinksController', function ($scope, $location, Links, Auth) {
   $scope.data = {};
-  $scope.data.links = LinkPrepService;
-  // console.log($scope.data);
-  // Links.getAll().then(function(links) {
-  //   $scope.data.links = links;
-  // });
+  Links.getAll().then(function(links) {
+    $scope.data.links = links;
+    console.log($scope.data.links);
+  });
   $scope.signout = function() {
     Auth.signout();
   };

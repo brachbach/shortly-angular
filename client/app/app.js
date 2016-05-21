@@ -3,38 +3,45 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
+  'ui.router',
   'ngRoute'
 ])
-.config(function ($routeProvider, $httpProvider) {
-  $routeProvider
-    .when('/signin', {
+.config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
+  
+  $urlRouterProvider.otherwise('/links');
+  $stateProvider
+    .state('signin', {
+      url: '/signin',
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
-    .when('/signup', {
+    .state('signup', {
+      url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-    .when('/links', {
+    .state('links', {
+      url: '/links',
       templateUrl: 'app/links/links.html',
       controller: 'LinksController',
       authenticate: true,
-      resolve: {
-        LinkPrepService: function(Links) {
-          return Links.getAll();
-        }
-      }
+      // resolve: {
+      //   LinkPrepService: function(Links) {
+      //     return Links.getAll();
+      //   }
+      // }
     })
-    .when('/shorten', {
+    .state('shorten', {
+      url: '/shorten',
       templateUrl: 'app/shorten/shorten.html',
       controller: 'ShortenController',
       authenticate: true
-    })
-    .otherwise({
-      templateUrl: 'app/links/links.html',
-      controller: 'LinksController',
-      authenticate: true
     });
+    // .otherwise({
+    //   templateUrl: 'app/links/links.html',
+    //   controller: 'LinksController',
+    //   authenticate: true
+    // });
 
 
     // Your code here
@@ -68,11 +75,13 @@ angular.module('shortly', [
   // when it does change routes, we then look for the token in localstorage
   // and send that token to the server to see if it is a real user or hasn't expired
   // if it's not valid, we then redirect back to signin/signup
-  $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
     // if (next.$$route  && next.$$route.authenticate && !Auth.isAuth()) {
     //   $location.path('/signin');
     // }
-    if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
+    // event.preventDefault();
+    console.log('routechange invoked');
+    if (toState && toState.authenticate && !Auth.isAuth()) {
       $location.path('/signin');
     }
   });
