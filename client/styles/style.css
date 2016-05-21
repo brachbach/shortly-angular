@@ -146,3 +146,8 @@ input[type=url]:focus {
   clear: both;
 }
 
+.logout {
+  position: inline-block;
+  float: right;
+}
+

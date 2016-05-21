@@ -1,3 +1,39 @@
-<div id='container'>
-  <!-- Your html here -->
+<div id='links'>
+  <div class='navigation'>
+    <ul>
+      <li><a href='#/links' class='index'>All Links</a></li>
+      <li><a href='#/shorten' class='create'>Shorten</a></li>
+      <li><a href='/logout' class='logout'>Logout</a></li>
+    </ul>
+      
+  </div>
+  <div class='info'>
+    <ul>
+      <li ng-repeat="link in data.links">
+        <div class='visits'><span class='count'>{{link.visits}}</span> Visits</div>
+        <div class='title'>{{link.title}}</div>
+        <div class='original'>{{link.url}}</div>
+        <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+      </li>
+    </ul>
+  </div>
+<!--   <img src='/redirect_icon.png'/>
+  <div class='info'>
+    <div class='visits'><span class='count'>{{visits}}</span>Visits</div>
+    <div class='title'>{{title}}</div>
+    <div class='original'>{{url}}</div>
+    <a href='{{baseUrl}}/{{code}}'>{{baseUrl}}/{{code}}</a>
+  </div>
+</script> -->
+
+
+<!-- 
+<script>
+  window.Templates = {};
+  $('[type="text/x-handlebars-template"]').each(function(index, div){
+    Templates[div.id] = Handlebars.compile(div.innerHTML);
+  });
+</script> -->
+
+
 </div>
