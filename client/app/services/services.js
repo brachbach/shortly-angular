@@ -7,13 +7,11 @@ angular.module('shortly.services', [])
       url: '/api/links',
     })
     .then(function (resp) {
-      // console.log('GET ============= resp.data', resp.data);
       return resp.data;
     });
   };
 
   var addOne = function(url) {
-    console.log('DAT URL=================', url);
     return $http({
       method: 'POST',
       url: '/api/links',
