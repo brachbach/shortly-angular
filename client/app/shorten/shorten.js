@@ -12,4 +12,5 @@ angular.module('shortly.shorten', [])
   $scope.signout = function() {
     Auth.signout();
   };
+  var authenticate = true;
 });
