@@ -11,10 +11,11 @@
     <input type='text' ng-model='searchString' placeholder='search something?'>
     <ul>
       <li ng-repeat="link in data.links | orderBy: '-visits' | filter: searchString">
-        <div class='visits'><span class='count'>{{link.visits}}</span> Visits</div>
+        <shortened-link></shortened-link>
+        <!-- <div class='visits'><span class='count'>{{link.visits}}</span> Visits</div>
         <div class='title'>{{link.title}}</div>
         <div class='original'>{{link.url}}</div>
-        <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+        <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a> -->
       </li>
     </ul>
   </div>
